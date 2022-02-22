@@ -16,9 +16,15 @@ function App() {
     ]);
 
     function removeTask(id: string) {
-        let filteredTasks = tasks.filter(t => t.id != id);
+        let filteredTasks = tasks.filter(t => t.id !== id);
         setTasks(filteredTasks);
     }
+    function addNewTask(title:string) {
+        let task = {id: v1(), title: title, isDone:false};
+        let newTasks = [task,...tasks];
+        setTasks(newTasks);
+    }
+
 
     let [filter, setFilter] = useState<FilterValuesType>("all");
 
@@ -40,7 +46,9 @@ function App() {
             <Todolist title="What to learn"
                       tasks={tasksForTodolist}
                       removeTask={removeTask}
-                      changeFilter={changeFilter} />
+                      changeFilter={changeFilter}
+                      addNewTask={addNewTask}
+            />
         </div>
     );
 }
